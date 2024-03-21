@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SignUp</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f8f8;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            width: 80%;
+            height: 80%;
+        }
+
+        form {
+            background-color: #fff;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 50%;
+        }
+
+        h3 {
+            text-align: center;
+            color: #333;
+            margin-top: 0;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            box-sizing: border-box;
+        }
+
+        button[type="submit"] {
+            width: 100%;
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #00b31b;
+        }
+    </style>
+</head>
+<body>
+
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+        <strong>Message:</strong> {{ message }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+    </div>
+    {% endfor %}
+    
+    <div class="container">
+        <form action="/signup" method="post">
+            {% csrf_token %}
+            <h3>Sign Up</h3>
+            <label for="username">Username</label>
+            <input type="text" id="username" name="username" placeholder="Create a username (only letters and numeric)">
+            <br>
+            <label for="fname">First Name</label>
+            <input type="text" id="fname" name="fname" placeholder="Enter your First Name">
+            <br>
+            <label for="lname">Last Name</label>
+            <input type="text" id="lname" name="lname" placeholder="Enter your Last Name">
+            <br>
+            <label for="email">Email Address</label>
+            <input type="email" id="email" name="email" placeholder="Enter your Email Address">
+            <br>
+            <label for="pass1">Password</label>
+            <input type="password" id="pass1" name="pass1" placeholder="Create a Password">
+            <br>
+            <label for="pass2">Confirm your password</label>
+            <input type="password" id="pass2" name="pass2" placeholder="Confirm your password">
+            <br>
+            <button type="submit">Sign Up</button>
+        </form>
+
+    </div>
+</body>
+</html>
